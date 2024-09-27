@@ -1,32 +1,38 @@
+//APP ABOUT NOTHING APP CODE
+//  AppAboutNothingApp.swift
+//  AppAboutNothing
 //
-//  appaboutnothingApp.swift
-//  appaboutnothing
+//  Created by lake on 9/3/24.
 //
-//  Created by Jayden Cheris on 9/9/24.
-//
-
+ 
 import SwiftUI
-import SwiftData
-
+import FirebaseCore
+ 
 @main
-struct appaboutnothingApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
-    var body: some Scene {
-        WindowGroup {
+struct AppAboutNothingApp: App
+{
+  
+    init()
+    {
+       //start database
+       startDatabase()
+    }
+    
+    var body: some Scene
+    {
+        WindowGroup
+        {
             ContentView()
         }
-        .modelContainer(sharedModelContainer)
     }
+    
 }
+ 
+extension AppAboutNothingApp //more on this later
+{
+  private func startDatabase()
+  {
+    FirebaseApp.configure()
+  }
+}
+ 
